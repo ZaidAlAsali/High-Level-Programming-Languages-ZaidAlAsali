@@ -1,0 +1,34 @@
+#include "std_lib_facilities.h"
+
+namespace W {
+int var {0};
+void print() { cout << "W::var value is " << var << '\n'; }
+} // End of namespace X
+
+namespace U {
+int var {0};
+void print() { cout << "U::var value is " << var << '\n'; }
+} // End of namespace U
+
+namespace Z
+{
+int var {0};
+void print() { cout << "Z::var value is " << var << '\n'; }
+} // End of namespace Z
+
+int main()
+{
+    W::var = 14;
+    W::print();     // print W's var
+    using namespace U;
+    var = 18;
+    print();        // print U's var
+    {
+        using Z::var;
+        using Z::print;
+        var = 22;
+        print();    // print Z's var
+    }
+    print();        // print U's var
+    W::print();     // print W's var
+}
